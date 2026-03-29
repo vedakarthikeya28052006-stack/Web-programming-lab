@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+</head>
+
+<body>
+
+<h2>Simple Calculator</h2>
+
+<!-- Input fields for two numbers -->
+Number 1:
+<input type="number" id="num1" step="any"><br><br>
+
+Number 2:
+<input type="number" id="num2" step="any"><br><br>
+
+<!-- Buttons for different operations -->
+<button onclick="calculate('add')">Add</button>
+<button onclick="calculate('sub')">Subtract</button>
+<button onclick="calculate('mul')">Multiply</button>
+<button onclick="calculate('div')">Divide</button>
+
+<br><br>
+
+<!-- Result will be displayed here -->
+<p id="result"></p>
+
+<script>
+
+/* Function to perform calculator operations */
+function calculate(operation)
+{
+    // Read numbers from input fields
+    var n1 = parseFloat(document.getElementById("num1").value);
+    var n2 = parseFloat(document.getElementById("num2").value);
+
+    var result;
+
+    // Use switch statement to decide operation
+    switch(operation)
+    {
+        case "add":
+            result = n1 + n2;
+            break;
+
+        case "sub":
+            result = n1 - n2;
+            break;
+
+        case "mul":
+            result = n1 * n2;
+            break;
+
+        case "div":
+            // Handle division by zero
+            if(n2 == 0)
+            {
+                result = "Division by zero not allowed";
+            }
+            else
+            {
+                result = n1 / n2;
+            }
+            break;
+    }
+
+    // Display result on webpage
+    document.getElementById("result").innerHTML = "Result: " + result;
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+
+</html>
+
+

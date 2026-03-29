@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Skills Form</title>
+</head>
+
+<body>
+
+<h2>Job Skills Form</h2>
+
+<!-- Form for selecting skills -->
+<form id="skillsForm">
+
+    <p>Select at least 3 skills:</p>
+
+    <input type="checkbox" name="skill" value="HTML"> HTML<br>
+    <input type="checkbox" name="skill" value="CSS"> CSS<br>
+    <input type="checkbox" name="skill" value="JavaScript"> JavaScript<br>
+    <input type="checkbox" name="skill" value="Python"> Python<br>
+    <input type="checkbox" name="skill" value="Java"> Java<br>
+
+    <br>
+
+    <!-- Button to validate selected skills -->
+    <button type="button" onclick="validateSkills()">Submit</button>
+
+</form>
+
+<br>
+
+<!-- Result or error message will be shown here -->
+<p id="result"></p>
+
+<script>
+
+/* Function to validate skill selection */
+function validateSkills()
+{
+    // Get all checkboxes by name
+    var skills = document.getElementsByName("skill");
+
+    // Array to store selected skills
+    var selectedSkills = [];
+
+    // for loop with index to check selected boxes
+    for(var i = 0; i < skills.length; i++)
+    {
+        if(skills[i].checked)
+        {
+            selectedSkills.push(skills[i].value);
+        }
+    }
+
+    // Optional form validity check
+    document.getElementById("skillsForm").checkValidity();
+
+    // Validate minimum 3 skills
+    if(selectedSkills.length < 3)
+    {
+        document.getElementById("result").innerHTML =
+        "Please select at least 3 skills";
+    }
+    else
+    {
+        // Display selected skills using string concatenation
+        document.getElementById("result").innerHTML =
+        "Selected Skills: " + selectedSkills.join(", ");
+    }
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>
+

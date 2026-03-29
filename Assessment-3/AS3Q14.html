@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Styling Application</title>
+
+    <style>
+        /* Predefined CSS classes */
+
+        .italic
+        {
+            font-style: italic;
+        }
+
+        .bold
+        {
+            font-weight: bold;
+        }
+
+        .smallcaps
+        {
+            font-variant: small-caps;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Text Styling Application</h2>
+
+<!-- Fieldset to group buttons -->
+<fieldset>
+    <legend>Apply Styles</legend>
+
+    <!-- Buttons to apply styles -->
+    <button onclick="applyStyle('italic')">Italic</button>
+    <button onclick="applyStyle('bold')">Bold</button>
+    <button onclick="applyStyle('smallcaps')">Small Caps</button>
+    <button onclick="applyStyle('italic bold smallcaps')">All Styles</button>
+</fieldset>
+
+<br>
+
+<!-- Text message -->
+<p id="text">This is a sample text for styling.</p>
+
+<script>
+
+/* Function to apply CSS classes */
+function applyStyle(styleName)
+{
+    // Get the paragraph element
+    var element = document.getElementById("text");
+
+    // Apply class using className property
+    element.className = styleName;
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

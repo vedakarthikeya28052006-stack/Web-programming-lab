@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Radio Button Selection</title>
+</head>
+
+<body>
+
+<h2>Select a Color</h2>
+
+<!-- Radio buttons (same name = one group) -->
+<input type="radio" name="color" value="Red"> Red
+<input type="radio" name="color" value="Green"> Green
+<input type="radio" name="color" value="Blue"> Blue
+
+<br><br>
+
+<!-- Button to display selected value -->
+<button onclick="showColor()">Show Selected Color</button>
+
+<br><br>
+
+<!-- Output will be shown here -->
+<p id="result"></p>
+
+<script>
+
+/* Function to display selected radio button value */
+function showColor()
+{
+    // Get all radio buttons by name
+    var colors = document.getElementsByName("color");
+
+    var selected = "";
+
+    // Loop through radio buttons
+    for(var i = 0; i < colors.length; i++)
+    {
+        // Check which one is selected
+        if(colors[i].checked)
+        {
+            selected = colors[i].value;
+        }
+    }
+
+    // Display result
+    if(selected == "")
+    {
+        document.getElementById("result").innerHTML = "No color selected";
+    }
+    else
+    {
+        document.getElementById("result").innerHTML = "Selected Color: " + selected;
+    }
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

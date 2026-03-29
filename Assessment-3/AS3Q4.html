@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Area of Rectangle</title>
+</head>
+
+<body>
+
+<h2>Area of Rectangle Calculator</h2>
+
+<!-- Button to calculate area -->
+<button onclick="calculateArea()">Calculate Area</button>
+
+<br><br>
+
+<!-- Area results will be displayed here -->
+<p id="result"></p>
+
+<script>
+
+/* Function to calculate the area of a rectangle */
+function calculateArea()
+{
+    // Integer values for length and width
+    var lengthValue = 10;
+    var widthValue = 5;
+
+    // Area calculation using integers
+    var areaResult = lengthValue * widthValue;
+
+    // Display integer result
+    document.getElementById("result").innerHTML =
+    "Area using integers = " + areaResult;
+
+    // Now demonstrating loose typing with floating point values
+    lengthValue = 10.5;
+    widthValue = 5.2;
+
+    // Area calculation using floating point numbers
+    areaResult = lengthValue * widthValue;
+
+    // Append float result using innerHTML
+    document.getElementById("result").innerHTML +=
+    "<br>Area using floating values = " + areaResult;
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

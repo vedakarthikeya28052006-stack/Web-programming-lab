@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkbox Selection Count</title>
+</head>
+
+<body>
+
+<h2>Select Subjects</h2>
+
+<!-- Checkboxes (multiple selection allowed) -->
+<input type="checkbox" name="subject" value="Math"> Math<br>
+<input type="checkbox" name="subject" value="Science"> Science<br>
+<input type="checkbox" name="subject" value="English"> English<br>
+<input type="checkbox" name="subject" value="Computer"> Computer<br>
+
+<br>
+
+<!-- Button to count selected subjects -->
+<button onclick="countSubjects()">Show Selected</button>
+
+<br><br>
+
+<!-- Output will be displayed here -->
+<p id="result"></p>
+
+<script>
+
+/* Function to count and display selected checkboxes */
+function countSubjects()
+{
+    // Get all checkboxes using name
+    var subjects = document.getElementsByName("subject");
+
+    var selectedList = [];   // Array to store selected values
+    var count = 0;           // Counter variable
+
+    // Loop through all checkboxes
+    for(var i = 0; i < subjects.length; i++)
+    {
+        // Check if checkbox is selected
+        if(subjects[i].checked)
+        {
+            selectedList.push(subjects[i].value); // add to array
+            count++; // increment counter
+        }
+    }
+
+    // Display result
+    if(count == 0)
+    {
+        document.getElementById("result").innerHTML = "No subjects selected";
+    }
+    else
+    {
+        document.getElementById("result").innerHTML =
+        "Selected Subjects (" + count + "): " + selectedList.join(", ");
+    }
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

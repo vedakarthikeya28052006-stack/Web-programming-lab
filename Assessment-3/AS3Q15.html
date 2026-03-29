@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Font Customization Tool</title>
+</head>
+
+<body>
+
+<h2>Dynamic Font Customization Tool</h2>
+
+<!-- Fieldset to group customization controls -->
+<fieldset>
+    <legend>Font Controls</legend>
+
+    Font Size:
+    <input type="range" id="fontSize" min="10" max="50" value="20" oninput="changeStyle()">
+    <br><br>
+
+    Text Color:
+    <input type="color" id="textColor" value="#000000" onchange="changeStyle()">
+    <br><br>
+
+    Background Color:
+    <input type="color" id="bgColor" value="#ffff00" onchange="changeStyle()">
+</fieldset>
+
+<br>
+
+<!-- Sample text -->
+<p id="message">This is a sample text for font customization.</p>
+
+<script>
+
+/* Function to change text style dynamically */
+function changeStyle()
+{
+    // Get input values
+    var size = document.getElementById("fontSize").value;
+    var textColor = document.getElementById("textColor").value;
+    var bgColor = document.getElementById("bgColor").value;
+
+    // Get the text element
+    var msg = document.getElementById("message");
+
+    // Apply styles using style property
+    msg.style.fontSize = size + "px";
+    msg.style.color = textColor;
+    msg.style.backgroundColor = bgColor;
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

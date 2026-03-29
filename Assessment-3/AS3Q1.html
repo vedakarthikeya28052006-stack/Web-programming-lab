@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World Button</title>
+</head>
+
+<body>
+
+    <!-- Button that triggers the JavaScript function when clicked -->
+    <button onclick="showMessage()">Click Me</button>
+
+    <!-- Placeholder element where the message will appear -->
+    <p id="demo"></p>
+
+    <script>
+
+        /* Function declaration */
+        function showMessage()
+        {
+            // Variable declaration using var
+            var msg = "Hello, world!";
+
+            // Access the element using DOM method getElementById
+            var element = document.getElementById("demo");
+
+            // outerHTML replaces the entire element with new HTML content
+            element.outerHTML = "<p id='demo'>" + msg + "</p>";
+        }
+
+    </script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

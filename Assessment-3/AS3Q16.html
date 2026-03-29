@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Overlapping Image Gallery</title>
+
+    <style>
+        /* Container to hold images */
+        #gallery
+        {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        /* Common style for all images */
+        .imgBox
+        {
+            position: absolute; /* required for z-index to work */
+            width: 150px;
+            height: 100px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Overlapping Image Gallery</h2>
+
+<!-- Image container -->
+<div id="gallery">
+
+    <!-- Images with different starting positions -->
+    <img src="../ADDITIONAL FILES WEB ASSESSMENTS/overlapping_img1.jpg" class="imgBox" style="top:10px; left:10px;" onclick="bringToFront(this)">
+
+    <img src="../ADDITIONAL FILES WEB ASSESSMENTS/overlapping_img2.jpg" class="imgBox" style="top:40px; left:40px;" onclick="bringToFront(this)">
+
+    <img src="../ADDITIONAL FILES WEB ASSESSMENTS/overlapping_img3.jpg" class="imgBox" style="top:70px; left:70px;" onclick="bringToFront(this)">
+
+</div>
+
+<script>
+
+    // Global variable to track highest z-index
+    var topIndex = 1;
+
+    /* Function to bring clicked image to front */
+    function bringToFront(element)
+    {
+        // Increment z-index using prefix ++ operator
+        element.style.zIndex = ++topIndex;
+    }
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

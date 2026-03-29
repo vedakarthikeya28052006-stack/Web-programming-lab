@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Address Generator</title>
+</head>
+
+<body>
+
+<h2>Email Address Generator</h2>
+
+<!-- Form to enter first name and last name -->
+<form name="emailForm">
+
+    First Name:
+    <input type="text" name="fname"><br><br>
+
+    Last Name:
+    <input type="text" name="lname"><br><br>
+
+    <!-- Button to generate email -->
+    <button type="button" onclick="generateEmail(this.form)">Generate Email</button>
+
+</form>
+
+<br>
+
+<!-- Paragraph to display the generated email -->
+<p id="result"></p>
+
+<script>
+
+/* Function to generate email address */
+function generateEmail(form)
+{
+    // Access form elements using form.elements
+    var firstName = form.elements["fname"].value;
+    var lastName = form.elements["lname"].value;
+
+    // Generate email using string concatenation
+    var email = firstName + "." + lastName + "@park.edu";
+
+    // Display the generated email using innerHTML
+    document.getElementById("result").innerHTML = "Generated Email: " + email;
+
+    // Clear the form fields
+    form.reset();
+
+    // Set cursor focus back to first name field
+    form.elements["fname"].focus();
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

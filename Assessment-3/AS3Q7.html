@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Print Numbers using While Loop</title>
+</head>
+
+<body>
+
+<h2>Print Numbers from 1 to N</h2>
+
+<!-- Input field to take value of N -->
+Enter value of N:
+<input type="number" id="num"><br><br>
+
+<!-- Button to trigger function -->
+<button onclick="printNumbers()">Print</button>
+
+<br><br>
+
+<!-- Output will be displayed here -->
+<p id="result"></p>
+
+<script>
+
+/* Function to print numbers from 1 to N */
+function printNumbers()
+{
+    // Get value from input field
+    var n = document.getElementById("num").value;
+
+    // Initialize counter
+    var i = 1;
+
+    // Variable to store output
+    var output = "";
+
+    // While loop to print numbers from 1 to N
+    while(i <= n)
+    {
+        output = output + i + " ";
+        i++; // increment counter
+    }
+
+    // Display output on webpage
+    document.getElementById("result").innerHTML = output;
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiplication Table (Do-While)</title>
+</head>
+
+<body>
+
+<h2>Multiplication Table</h2>
+
+<!-- Input field for number -->
+Enter a number:
+<input type="number" id="num"><br><br>
+
+<!-- Button to generate table -->
+<button onclick="printTable()">Generate Table</button>
+
+<br><br>
+
+<!-- Output will be shown here -->
+<p id="result"></p>
+
+<script>
+
+/* Function to print multiplication table */
+function printTable()
+{
+    // Get input value
+    var n = document.getElementById("num").value;
+
+    // Initialize counter
+    var i = 1;
+
+    // String to store output
+    var output = "";
+
+    // do-while loop (runs at least once)
+    do
+    {
+        // Build multiplication string with line break
+        output = output + n + " x " + i + " = " + (n * i) + "<br>";
+
+        i++; // increment counter
+
+    } while(i <= 10); // condition checked after execution
+
+    // Display result on webpage
+    document.getElementById("result").innerHTML = output;
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

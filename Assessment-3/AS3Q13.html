@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Order Form</title>
+</head>
+
+<body>
+
+<h2>Product Order Form</h2>
+
+<!-- Form with multiple fieldsets -->
+<form id="orderForm">
+
+    <fieldset>
+        <legend>Electronics</legend>
+        <input type="checkbox" name="product" value="25000"> Mobile - 25000<br>
+        <input type="checkbox" name="product" value="45000"> Laptop - 45000<br>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+        <legend>Accessories</legend>
+        <input type="checkbox" name="product" value="1500"> Headphones - 1500<br>
+        <input type="checkbox" name="product" value="800"> Mouse - 800<br>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+        <legend>Stationery</legend>
+        <input type="checkbox" name="product" value="50"> Pen - 50<br>
+        <input type="checkbox" name="product" value="120"> Notebook - 120<br>
+    </fieldset>
+
+    <br>
+
+    <!-- Button to calculate total -->
+    <button type="button" onclick="calculateTotal()">Calculate Total</button>
+
+</form>
+
+<br>
+
+<!-- Result will be displayed here -->
+<p id="result"></p>
+
+<script>
+
+/* Function to calculate total price */
+function calculateTotal()
+{
+    // Get all product checkboxes
+    var items = document.getElementsByName("product");
+
+    // Variable to store total amount
+    var total = 0;
+
+    // Modern for...of loop to go through checkbox collection
+    for (var item of items)
+    {
+        // Add price only if item is selected
+        if(item.checked)
+        {
+            total = total + parseFloat(item.value);
+        }
+    }
+
+    // Display total amount
+    document.getElementById("result").innerHTML = "Total Price: " + total;
+}
+
+</script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>
