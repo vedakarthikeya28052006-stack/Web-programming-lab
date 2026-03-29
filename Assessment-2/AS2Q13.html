@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickEats Food Delivery</title>
+
+    <!-- Internal CSS -->
+    <style>
+        /* Basic page setup */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #222;
+        }
+
+        /* ---------- Section 1: Header ---------- */
+        header {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 6px 0 0;
+            font-size: 14px;
+        }
+
+        /* ---------- Section 2: Navigation Bar ---------- */
+        nav {
+            background-color: #222;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: #444;
+        }
+
+        /* Common section styling */
+        section {
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ---------- Section 3: Welcome Section ---------- */
+        .welcome {
+            background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=60") center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 90px 20px;
+            position: relative;
+        }
+
+        /* Dark overlay for readability */
+        .welcome::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        .welcome-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .welcome h2 {
+            margin: 0 0 10px;
+            font-size: 36px;
+        }
+
+        .welcome p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ffcc00;
+            color: #222;
+            padding: 12px 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #f2b800;
+        }
+
+        /* ---------- Section 4: Food Categories ---------- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-body {
+            padding: 14px;
+        }
+
+        .card-body h3 {
+            margin: 0 0 6px;
+            font-size: 18px;
+        }
+
+        .card-body p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* ---------- Section 5: Popular Dishes ---------- */
+        .dishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .dish {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .dish h3 {
+            margin: 0 0 8px;
+        }
+
+        .dish p {
+            margin: 0 0 10px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .price {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .dish button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .dish button:hover {
+            background-color: #e63b3b;
+        }
+
+        /* ---------- Section 6: Contact ---------- */
+        .contact-box {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 18px;
+            line-height: 1.8;
+        }
+
+        .contact-box a {
+            color: #ff4d4d;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- Section 7: Footer ---------- */
+        footer {
+            margin-top: 30px;
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            border-top: 4px solid #ff4d4d;
+        }
+
+        footer p {
+            margin: 8px 0 0;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Section 1: Header -->
+    <header id="home">
+        <h1>QuickEats Food Delivery</h1>
+        <p>Fast, fresh, and delivered right to your doorstep</p>
+    </header>
+
+    <!-- Section 2: Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#order">Order Online</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Section 3: Welcome Section -->
+    <section class="welcome" id="order">
+        <div class="welcome-content">
+            <h2>Delicious Food Delivered to Your Doorstep</h2>
+            <p>
+                QuickEats helps you order your favorite meals from nearby restaurants with easy online ordering,
+                quick delivery, and live updates. Fresh food, hot delivery, anytime.
+            </p>
+            <a class="btn" href="#menu">Order Now</a>
+        </div>
+    </section>
+
+    <!-- Section 4: Food Categories -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Food Categories</h2>
+
+            <div class="categories">
+                <!-- Category 1 -->
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=60" alt="Pizza">
+                    <div class="card-body">
+                        <h3>Pizza</h3>
+                        <p>Cheesy, loaded, and oven-fresh pizzas.</p>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=60" alt="Burgers">
+                    <div class="card-body">
+                        <h3>Burgers</h3>
+                        <p>Juicy burgers with crispy fries combos.</p>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=60" alt="Biryani">
+                    <div class="card-body">
+                        <h3>Biryani</h3>
+                        <p>Spicy, aromatic biryani for every mood.</p>
+                    </div>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=60" alt="Desserts">
+                    <div class="card-body">
+                        <h3>Desserts</h3>
+                        <p>Sweet treats to finish your meal right.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Featured Menu / Popular Dishes -->
+    <section id="menu">
+        <div class="container">
+            <h2 class="section-title">Popular Dishes</h2>
+
+            <div class="dishes">
+                <!-- Dish 1 -->
+                <div class="dish">
+                    <h3>Margherita Pizza</h3>
+                    <p>Classic pizza with fresh basil and mozzarella cheese.</p>
+                    <div class="price">Price: ₹249</div>
+                    <button type="button">Add to Cart</button>
+                </div>
+
+                <!-- Dish 2 -->
+                <div class="dish">
+                    <h3>Chicken Biryani</h3>
+                    <p>Long-grain rice cooked with spices and tender chicken.</p>
+                    <div class="price">Price: ₹299</div>
+                    <button type="button">Add to Cart</button>
+                </div>
+
+                <!-- Dish 3 -->
+                <div class="dish">
+                    <h3>Cheese Burger</h3>
+                    <p>Grilled patty with cheese, veggies, and special sauce.</p>
+                    <div class="price">Price: ₹199</div>
+                    <button type="button">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Contact Information -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Information</h2>
+
+            <div class="contact-box">
+                <div><b>Phone:</b> +91 98765 43210</div>
+                <div><b>Email:</b> <a href="mailto:support@quickeats.com">support@quickeats.com</a></div>
+                <div><b>Service Area:</b> Chennai, Bengaluru, Hyderabad (and nearby locations)</div>
+
+                <!-- Social links -->
+                <div><b>Social:</b>
+                    <a href="#">Instagram</a> |
+                    <a href="#">Twitter</a> |
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Footer -->
+    <footer>
+        <div>© 2026 QuickEats Food Delivery</div>
+        <div>All rights reserved.</div>
+        <p>
+            NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+            REGD NO: 24BCE2032
+        </p>
+    </footer>
+
+</body>
+</html>
