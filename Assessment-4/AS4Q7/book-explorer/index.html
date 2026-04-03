@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Folio — Book Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/src/styles/main.css"/>
+</head>
+<body>
+<div id="app">
+
+  <!-- Header -->
+  <header class="header" id="header"></header>
+
+  <!-- Main content area -->
+  <main id="main">
+
+    <!-- Welcome screen -->
+    <div id="welcome" class="welcome">
+      <div class="welcome-icon">📚</div>
+      <h1 class="welcome-title">Folio</h1>
+      <p class="welcome-sub">Search for any book, author, or subject to begin exploring.</p>
+      <div class="welcome-suggestions">
+        <span class="suggestion-label">Try:</span>
+        <button class="suggestion-btn" data-query="dune">Dune</button>
+        <button class="suggestion-btn" data-query="tolkien">Tolkien</button>
+        <button class="suggestion-btn" data-query="science fiction">Sci-Fi</button>
+        <button class="suggestion-btn" data-query="philosophy">Philosophy</button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Searching Open Library…</p>
+    </div>
+
+    <!-- Error -->
+    <div id="error-msg" class="error-msg hidden"></div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="hidden"></div>
+
+  </main>
+
+  <!-- Book detail modal -->
+  <div id="modal-backdrop" class="modal-backdrop hidden">
+    <div id="modal" class="modal-panel"></div>
+  </div>
+
+</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

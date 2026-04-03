@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Welcome Message</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #e6f2ff;
+        }
+
+        #root {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .box {
+            background-color: #4a76c9;
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #d9d9d9;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <!-- React and ReactDOM CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel is needed here because we are writing JSX directly in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        // Functional component using props
+        function Welcome(props) {
+            return (
+                <div className="box">
+                    <h1>Hello, {props.name}!</h1>
+                    <h2>Welcome to {props.city}</h2>
+
+                    <p>
+                        This is a simple React application made using a functional component
+                        and props. The message is personalized by passing the user's name
+                        and city dynamically.
+                    </p>
+
+                    <p>
+                        It also shows how JSX, inline styling, and ReactDOM.createRoot()
+                        can be used to render content inside a normal HTML page.
+                    </p>
+                </div>
+            );
+        }
+
+        // Accessing the root element using document.getElementById
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+
+        // Rendering the component and passing props
+        root.render(<Welcome name="Veda Karthikeya" city="Chennai" />);
+    </script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

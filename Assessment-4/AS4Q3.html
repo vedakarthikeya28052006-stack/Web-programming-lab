@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Image Gallery</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #eef4ff;
+        }
+
+        .gallery-container {
+            max-width: 900px;
+            margin: auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-title {
+            text-align: center;
+            color: #1f4e79;
+            margin-bottom: 20px;
+        }
+
+        .preview-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .preview-image {
+            width: 100%;
+            max-width: 500px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid #4a76c9;
+            transition: transform 0.3s ease;
+        }
+
+        .preview-image:hover {
+            transform: scale(1.02);
+        }
+
+        .thumbnail-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .thumbnail {
+            width: 130px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.08);
+            border-color: #4a76c9;
+        }
+
+        .active {
+            border-color: #1f4e79;
+            box-shadow: 0 0 8px rgba(31, 78, 121, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <!-- React library -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        function ImageGallery() {
+            // Array of image URLs for the gallery
+            const images = [
+                "https://picsum.photos/id/1015/600/400",
+                "https://picsum.photos/id/1025/600/400",
+                "https://picsum.photos/id/1035/600/400",
+                "https://picsum.photos/id/1043/600/400",
+                "https://picsum.photos/id/1050/600/400"
+            ];
+
+            // State to store currently selected image
+            const [selectedImage, setSelectedImage] = React.useState(images[0]);
+
+            return (
+                <div className="gallery-container">
+                    <h2 className="gallery-title">Interactive Image Gallery</h2>
+
+                    {/* Large preview image */}
+                    <div className="preview-box">
+                        <img
+                            src={selectedImage}
+                            alt="Preview"
+                            className="preview-image"
+                        />
+                    </div>
+
+                    {/* Thumbnails rendered using map() */}
+                    <div className="thumbnail-row">
+                        {images.map((image, index) => (
+                            <img
+                                key={index}
+                                src={image}
+                                alt={"Thumbnail " + (index + 1)}
+                                className={selectedImage === image ? "thumbnail active" : "thumbnail"}
+                                onClick={() => setSelectedImage(image)}
+                            />
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<ImageGallery />);
+    </script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

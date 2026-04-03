@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Todo List</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #eef4ff;
+        }
+
+        .container {
+            width: 400px;
+            margin: 80px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            text-align: center;
+            color: #1f4e79;
+            margin-bottom: 20px;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #999;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 16px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4a76c9;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #355ca3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background-color: #f4f8ff;
+            margin-bottom: 10px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border-left: 4px solid #4a76c9;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <!-- React libraries -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel is used here so JSX can run directly in browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        function TodoList() {
+            // Stores the current text typed in the input box
+            const [task, setTask] = React.useState("");
+
+            // Stores all added tasks inside an array
+            const [tasks, setTasks] = React.useState([]);
+
+            // Adds the current task to the array
+            const addTask = () => {
+                // Prevent adding empty task
+                if (task.trim() === "") {
+                    return;
+                }
+
+                // Spread operator keeps the old array and adds new task at the end
+                setTasks([...tasks, task]);
+
+                // Clear the input after adding
+                setTask("");
+            };
+
+            return (
+                <div className="container">
+                    <h2>Todo List</h2>
+
+                    <div className="input-section">
+                        <input
+                            type="text"
+                            placeholder="Enter a task"
+                            value={task}
+                            onChange={(e) => setTask(e.target.value)}
+                        />
+
+                        <button onClick={addTask}>Add</button>
+                    </div>
+
+                    <ul>
+                        {tasks.map((item, index) => (
+                            <li key={index}>
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<TodoList />);
+    </script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>

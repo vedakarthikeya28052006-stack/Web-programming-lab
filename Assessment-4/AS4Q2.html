@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Basic Calculator</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #eaf3ff;
+        }
+
+        .container {
+            width: 350px;
+            margin: 80px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #1f4e79;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #999;
+            border-radius: 5px;
+        }
+
+        .btn-group {
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 10px 18px;
+            margin: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4a76c9;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #355ca3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #0b3d91;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <!-- React library -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        function Calculator() {
+            // State for first number
+            const [num1, setNum1] = React.useState("");
+
+            // State for second number
+            const [num2, setNum2] = React.useState("");
+
+            // State for result
+            const [result, setResult] = React.useState(0);
+
+            // Function for addition
+            const addNumbers = () => {
+                setResult(Number(num1) + Number(num2));
+            };
+
+            // Function for subtraction
+            const subtractNumbers = () => {
+                setResult(Number(num1) - Number(num2));
+            };
+
+            return (
+                <div className="container">
+                    <h2>Basic Calculator</h2>
+
+                    {/* Controlled input for first number */}
+                    <input
+                        type="number"
+                        placeholder="Enter first number"
+                        value={num1}
+                        onChange={(e) => setNum1(e.target.value)}
+                    />
+
+                    {/* Controlled input for second number */}
+                    <input
+                        type="number"
+                        placeholder="Enter second number"
+                        value={num2}
+                        onChange={(e) => setNum2(e.target.value)}
+                    />
+
+                    <div className="btn-group">
+                        <button onClick={addNumbers}>Addition</button>
+                        <button onClick={subtractNumbers}>Subtraction</button>
+                    </div>
+
+                    <div className="result">
+                        Result: {result}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(<Calculator />);
+    </script>
+
+</body>
+<footer>
+<p>NAME: VEEREPALLI VEDA KARTHIKEYA<br>
+REGD NO: 24BCE2032</p>
+</footer>
+</html>
