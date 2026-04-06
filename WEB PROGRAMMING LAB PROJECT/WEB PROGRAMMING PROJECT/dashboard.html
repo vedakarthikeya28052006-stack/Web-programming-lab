@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QuantOps Monitoring Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- TOASTS -->
+<div id="toastBox" class="toast-box"></div>
+
+<!-- ═══ AUTH SCREEN ═══ -->
+<div id="authScreen" class="auth-overlay">
+  <div class="auth-card">
+    <div class="auth-logo">QuantOps</div>
+    <p class="auth-tagline">Real-Time API Monitoring Dashboard</p>
+
+    <div id="loginView">
+      <h2>Sign In</h2>
+      <div class="af"><label>Username</label><input id="lUser" type="text" placeholder="Enter username" /></div>
+      <div class="af"><label>Password</label><input id="lPass" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()" /></div>
+      <div id="lError" class="auth-err"></div>
+      <button class="auth-btn" onclick="doLogin()">Sign In</button>
+      <p class="auth-link">No account? <a onclick="showReg()">Create one</a></p>
+    </div>
+
+    <div id="regView" style="display:none">
+      <h2>Create Account</h2>
+      <div class="af"><label>Username</label><input id="rUser" type="text" placeholder="Choose username" /></div>
+      <div class="af"><label>Email</label><input id="rEmail" type="email" placeholder="your@email.com" /></div>
+      <div class="af"><label>Password</label><input id="rPass" type="password" placeholder="Min 4 characters" onkeydown="if(event.key==='Enter')doRegister()" /></div>
+      <div class="af"><label>Role</label><select id="rRole"><option value="operator">Operator</option><option value="admin">Admin</option></select></div>
+      <div id="rError" class="auth-err"></div>
+      <button class="auth-btn" onclick="doRegister()">Create Account</button>
+      <p class="auth-link">Have an account? <a onclick="showLog()">Sign in</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MAIN DASHBOARD ═══ -->
+<div id="dashboard" style="display:none">
+
+  <header class="header">
+    <div class="header-left">
+      <a href="index.html" class="back-link" title="Back to Portfolio">←</a>
+      <h1>QuantOps</h1>
+      <span class="live-dot">● LIVE</span>
+    </div>
+    <div class="header-right">
+      <span class="muted mono" id="headerTime">--</span>
+      <span class="role-badge" id="roleBadge">--</span>
+      <div class="user-menu" onclick="toggleDD(event)">
+        <span class="avatar" id="avatar">U</span>
+        <div class="user-dd" id="userDD">
+          <div class="dd-name" id="ddName">User</div>
+          <div class="dd-email" id="ddEmail">--</div>
+          <hr/><button onclick="doLogout()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" onclick="switchTab('overview',this)">Overview</button>
+    <button class="tab" onclick="switchTab('alerts',this)">Alerts <span class="tab-count" id="alertTabCount">0</span></button>
+    <button class="tab" onclick="switchTab('activity',this)">Activity Log</button>
+    <button class="tab" id="adminTab" style="display:none" onclick="switchTab('admin',this)">Admin Panel</button>
+  </nav>
+
+  <!-- ═══ OVERVIEW ═══ -->
+  <div id="tab-overview" class="tab-content active">
+    <section class="section">
+      <h2 class="section-title">System Overview</h2>
+      <div class="overview-row">
+        <div class="ov-card"><div class="ov-label">Endpoints Monitored</div><div class="ov-value" id="ovTotal">0</div></div>
+        <div class="ov-card"><div class="ov-label">Operational</div><div class="ov-value" id="ovOk">0</div></div>
+        <div class="ov-card"><div class="ov-label">Active Alerts</div><div class="ov-value" id="ovAlerts">0</div></div>
+        <div class="ov-card"><div class="ov-label">Avg Latency</div><div class="ov-value" id="ovLat">--</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Monitored Endpoints <span class="muted small">(every card = real API call)</span></h2>
+      <div class="service-grid" id="serviceGrid"></div>
+      <div class="muted small" style="margin-top:8px">Refreshes every <span id="intervalLabel">5</span> seconds. All latency values are real network round-trip times.</div>
+    </section>
+  </div>
+
+  <!-- ═══ ALERTS ═══ -->
+  <div id="tab-alerts" class="tab-content">
+    <section class="section">
+      <h2 class="section-title">Alert Management <button class="btn-sm" onclick="exportCSV()" style="margin-left:auto">Export CSV</button></h2>
+      <div class="alert-toolbar">
+        <div class="alert-filters">
+          <button class="filter-btn active" onclick="filterAlerts('all',this)">All</button>
+          <button class="filter-btn" onclick="filterAlerts('new',this)">New</button>
+          <button class="filter-btn" onclick="filterAlerts('acknowledged',this)">Acknowledged</button>
+          <button class="filter-btn" onclick="filterAlerts('resolved',this)">Resolved</button>
+        </div>
+        <div class="search-box">
+          <input type="text" id="alertSearch" placeholder="Search alerts..." oninput="renderAlerts()" />
+        </div>
+      </div>
+      <div id="alertList" class="alert-list"></div>
+      <div id="noAlerts" class="empty-state">No alerts to display.</div>
+    </section>
+  </div>
+
+  <!-- ═══ ACTIVITY LOG ═══ -->
+  <div id="tab-activity" class="tab-content">
+    <section class="section">
+      <h2 class="section-title">Activity Log <span class="muted small" id="actScope">(your actions)</span></h2>
+      <div class="log-toolbar">
+        <div class="search-box">
+          <input type="text" id="actSearch" placeholder="Search activity..." oninput="renderActLog()" />
+        </div>
+        <div class="date-filter">
+          <label class="muted small">From</label>
+          <input type="date" id="actDateFrom" onchange="renderActLog()" />
+          <label class="muted small">To</label>
+          <input type="date" id="actDateTo" onchange="renderActLog()" />
+          <button class="btn-sm" onclick="clearDateFilter()">Clear</button>
+        </div>
+      </div>
+      <div id="actLog" class="activity-log"></div>
+      <div id="noAct" class="empty-state">No activity yet.</div>
+    </section>
+  </div>
+
+  <!-- ═══ ADMIN PANEL ═══ -->
+  <div id="tab-admin" class="tab-content">
+    <section class="section">
+      <h2 class="section-title">Add New Endpoint</h2>
+      <div class="admin-form">
+        <div class="af"><label>Service Name</label><input id="addName" type="text" placeholder="e.g. CoinGecko API" /></div>
+        <div class="af"><label>Endpoint URL</label><input id="addUrl" type="text" placeholder="https://api.example.com/health" /></div>
+        <div class="af"><label>Latency Threshold (ms)</label><input id="addThresh" type="number" value="200" /></div>
+        <button class="auth-btn" onclick="addEndpoint()">+ Add Endpoint</button>
+      </div>
+    </section>
+    <section class="section">
+      <h2 class="section-title">Manage Endpoints</h2>
+      <div class="table-wrap" id="adminSvcTable"></div>
+    </section>
+    <section class="section">
+      <h2 class="section-title">Manage Users</h2>
+      <div class="table-wrap" id="adminUserTable"></div>
+    </section>
+    <section class="section">
+      <h2 class="section-title">Generate Health Report</h2>
+      <p class="muted small">Downloads a summary of all endpoint statuses, alerts, and user activity.</p>
+      <button class="auth-btn" style="max-width:250px" onclick="generateReport()">📄 Generate Report</button>
+    </section>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

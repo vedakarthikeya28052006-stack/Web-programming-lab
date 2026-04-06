@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Veda Karthikeya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0e14;
+      --surface: #111820;
+      --card: #161d28;
+      --border: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.88);
+      --muted: rgba(255,255,255,0.45);
+      --green: #00e68a;
+      --green-dim: rgba(0,230,138,0.1);
+      --blue: #4da6ff;
+      --blue-dim: rgba(77,166,255,0.1);
+      --purple: #b388ff;
+      --purple-dim: rgba(179,136,255,0.1);
+      --yellow: #ffb84d;
+      --yellow-dim: rgba(255,184,77,0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(600px 400px at 20% 10%, rgba(0,230,138,0.06), transparent),
+        radial-gradient(500px 400px at 80% 80%, rgba(77,166,255,0.04), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,14,20,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--green);
+      letter-spacing: 0.5px;
+    }
+    .nav-logo span { color: var(--muted); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── SECTIONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 100px;
+      padding-bottom: 60px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+    .hero-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid rgba(0,230,138,0.3);
+      background: var(--card);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      color: var(--green);
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .hero-text { flex: 1; }
+    .hero-greeting {
+      font-size: 14px;
+      color: var(--green);
+      font-weight: 500;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .hero-name {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+    .hero-reg {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .hero-bio {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .skill-category-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-tag {
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      border: 1px solid;
+    }
+    .tag-green { background: var(--green-dim); color: var(--green); border-color: rgba(0,230,138,0.2); }
+    .tag-purple { background: var(--purple-dim); color: var(--purple); border-color: rgba(179,136,255,0.2); }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .edu-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--green-dim);
+      color: var(--green);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .edu-details { flex: 1; }
+    .edu-college { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .edu-degree { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+    .edu-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 2px 10px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* ── PROJECT ── */
+    .project-card {
+      background: var(--card);
+      border: 1px solid rgba(0,230,138,0.15);
+      border-radius: 14px;
+      padding: 28px;
+      transition: all 0.3s;
+    }
+    .project-card:hover { border-color: rgba(0,230,138,0.3); box-shadow: 0 8px 40px rgba(0,230,138,0.06); }
+    .project-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 3px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .project-name { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .project-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .project-tech span {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .project-features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .project-feat {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      padding-left: 16px;
+      position: relative;
+    }
+    .project-feat::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--green);
+      color: #000;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 10px;
+      transition: opacity 0.2s;
+    }
+    .project-link:hover { opacity: 0.88; }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .contact-card:hover { border-color: rgba(255,255,255,0.15); }
+    .contact-icon { font-size: 24px; margin-bottom: 8px; }
+    .contact-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+    .contact-value { font-size: 13px; font-weight: 600; }
+    .contact-value a { color: var(--green); text-decoration: none; }
+    .contact-value a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 30px 24px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .anim { animation: fadeUp 0.6s ease-out both; }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.2s; }
+    .d3 { animation-delay: 0.3s; }
+    .d4 { animation-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-links { gap: 16px; }
+      .hero { flex-direction: column; text-align: center; padding-top: 60px; }
+      .hero-photo { width: 140px; height: 140px; font-size: 48px; }
+      .hero-name { font-size: 30px; }
+      .hero-bio { max-width: 100%; }
+      .project-features { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      section { padding: 40px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Veda Karthikeya<span>/portfolio</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#project">Project</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-photo anim">
+  <img src="pro.jpeg" alt="Veda Karthikeya">
+    </div>
+    <div class="hero-text">
+      <div class="hero-greeting anim d1">Hello, I'm</div>
+      <h1 class="hero-name anim d2">Veerepalli Veda Karthikeya</h1>
+      <div class="hero-reg anim d3">24BCE2032 · B.Tech CSE · VIT Vellore</div>
+      <p class="hero-bio anim d4">Second-year Computer Science student passionate about Artificial Intelligence, Machine Learning, and building real-time web applications. Currently exploring AI, ML, Data Science, and Full Stack Development.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label anim">About Me</div>
+    <p class="about-text anim d1">I am a second-year B.Tech Computer Science and Engineering student at Vellore Institute of Technology (VIT), Vellore. My primary interest lies in Artificial Intelligence and Machine Learning, and I am actively building foundational skills in data science, statistical analysis, and web development. I am a member of RoboVITics (AI/ML domain), where I collaborate with peers on technical projects and learn emerging technologies. I enjoy understanding the "why" behind every concept before diving into implementation, and I believe in building projects that solve real problems.</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label anim">Skills</div>
+    <div class="skills-grid">
+      <div class="anim d1">
+        <div class="skill-category-title">Web Development</div>
+        <div class="skill-tags">
+          <span class="skill-tag tag-green">HTML5</span>
+          <span class="skill-tag tag-green">CSS3</span>
+          <span class="skill-tag tag-green">JavaScript (ES6+)</span>
+          <span class="skill-tag tag-green">Responsive Design</span>
+          <span class="skill-tag tag-green">REST APIs</span>
+        </div>
+      </div>
+      <div class="anim d2">
+        <div class="skill-category-title">Tools & Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag tag-purple">Git</span>
+          <span class="skill-tag tag-purple">GitHub</span>
+          <span class="skill-tag tag-purple">VS Code</span>
+          <span class="skill-tag tag-purple">Google Colab</span>
+          <span class="skill-tag tag-purple">Kaggle</span>
+          <span class="skill-tag tag-purple">Jupyter Notebook</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-label anim">Education</div>
+    <div class="edu-card anim d1">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-details">
+        <div class="edu-college">Vellore Institute of Technology (VIT), Vellore</div>
+        <div class="edu-degree">B.Tech — Computer Science and Engineering</div>
+        <span class="edu-year">2024 – 2028</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT -->
+  <section id="project">
+    <div class="section-label anim">Featured Project</div>
+    <div class="project-card anim d1">
+      <div class="project-badge">Web Application · 2026</div>
+      <div class="project-name">QuantOps Monitoring Dashboard</div>
+      <div class="project-desc">A real-time API monitoring dashboard that tracks the health, latency, and availability of live public API endpoints. Features role-based authentication (Admin/Operator), interactive alert management, manual health checks, and downloadable reports. Every data point is real — no simulated or mock data is used anywhere.</div>
+      <div class="project-tech">
+        <span>HTML5</span>
+        <span>CSS3</span>
+        <span>JavaScript</span>
+        <span>Fetch API</span>
+        <span>LocalStorage</span>
+        <span>Performance API</span>
+        <span>Web Audio API</span>
+      </div>
+      <div class="project-features">
+        <div class="project-feat">Real-time monitoring of 8+ live APIs</div>
+        <div class="project-feat">Role-based access (Admin & Operator)</div>
+        <div class="project-feat">Alert management with search & highlight</div>
+        <div class="project-feat">Activity log with date filtering</div>
+        <div class="project-feat">Admin panel for endpoint configuration</div>
+        <div class="project-feat">Downloadable health reports</div>
+        <div class="project-feat">Maintenance mode toggle</div>
+        <div class="project-feat">Zero simulation — 100% real data</div>
+      </div>
+      <a href="dashboard.html" class="project-link">View Live Dashboard →</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label anim">Contact</div>
+    <div class="contact-grid">
+      <div class="contact-card anim d1">
+        <div class="contact-icon">📧</div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="mailto:veerepalli.veda2024@vitstudent.ac.in">veerepalli.veda2024@vitstudent.ac.in</a></div>
+      </div>
+      <div class="contact-card anim d2">
+        <div class="contact-icon">🔗</div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value"><a href="https://www.linkedin.com/in/" target="_blank">Veda Karthikeya</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Built with HTML, CSS & JavaScript · Veerepalli Veda Karthikeya · VIT Vellore · 2026
+  </footer>
+
+</body>
+</html>
