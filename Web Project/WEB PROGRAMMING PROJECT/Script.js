@@ -568,8 +568,9 @@ function updateThresh(id) {
 function removeUser(username) {
   if (currentUser.role!=='admin') return;
   if (username===currentUser.username) { toast("Can't remove yourself.",'error'); return; }
-  if (!confirm('Remove user "'+username+'"? This cannot be undone.')) return;
   const users=getUsers();
+  if (users[username]?.role==='admin') { toast("Can't remove another admin.",'error'); return; }
+  if (!confirm('Remove user "'+username+'"? This cannot be undone.')) return;
   delete users[username];
   saveUsers(users);
   logAct(currentUser.username, 'Removed user: '+username);
@@ -591,7 +592,7 @@ function renderAdmin() {
   $('#adminUserTable').innerHTML=`<table><thead><tr><th>Username</th><th>Email</th><th>Role</th><th>Last Login</th><th></th></tr></thead><tbody>${Object.entries(users).map(([n,u])=>`<tr>
     <td>${n}${n===currentUser.username?' (you)':''}</td><td>${u.email}</td><td><span class="role-badge role-${u.role}">${u.role}</span></td>
     <td>${u.lastLogin?new Date(u.lastLogin).toLocaleString():'Never'}</td>
-    <td>${n!==currentUser.username?`<button class="btn-sm btn-del" onclick="removeUser('${n}')">Remove</button>`:'--'}</td>
+    <td>${n!==currentUser.username && u.role!=='admin'?`<button class="btn-sm btn-del" onclick="removeUser('${n}')">Remove</button>`:'--'}</td>
   </tr>`).join('')}</tbody></table>`;
 }
 
