@@ -76,8 +76,14 @@ function logAct(user, action) {
 // ══════════════════════════════════════════════
 //  AUTH
 // ══════════════════════════════════════════════
-function showReg() { $('#loginView').style.display='none'; $('#regView').style.display='block'; }
-function showLog() { $('#regView').style.display='none'; $('#loginView').style.display='block'; }
+function showReg() {
+  $('#lUser').value=''; $('#lPass').value=''; $('#lError').textContent='';
+  $('#loginView').style.display='none'; $('#regView').style.display='block';
+}
+function showLog() {
+  $('#rUser').value=''; $('#rEmail').value=''; $('#rPass').value=''; $('#rError').textContent='';
+  $('#regView').style.display='none'; $('#loginView').style.display='block';
+}
 
 function doRegister() {
   const user=$('#rUser').value.trim(), email=$('#rEmail').value.trim(), pass=$('#rPass').value, role=$('#rRole').value, err=$('#rError');
@@ -112,6 +118,9 @@ function loginAs(username) {
   const users = getUsers();
   currentUser = { username, ...users[username] };
   setData('session', username);
+  // Clear all form fields for security
+  $('#lUser').value=''; $('#lPass').value=''; $('#lError').textContent='';
+  $('#rUser').value=''; $('#rEmail').value=''; $('#rPass').value=''; $('#rError').textContent='';
   $('#authScreen').style.display='none';
   $('#dashboard').style.display='block';
   $('#avatar').textContent = username[0].toUpperCase();
@@ -132,8 +141,13 @@ function doLogout() {
   currentUser = null;
   if (tickInterval) { clearInterval(tickInterval); tickInterval = null; }
   if (clockInterval) { clearInterval(clockInterval); clockInterval = null; }
+  // Clear all form fields
+  $('#lUser').value=''; $('#lPass').value=''; $('#lError').textContent='';
+  $('#rUser').value=''; $('#rEmail').value=''; $('#rPass').value=''; $('#rError').textContent='';
   $('#dashboard').style.display='none';
   $('#authScreen').style.display='flex';
+  // Reset to login view
+  $('#loginView').style.display='block'; $('#regView').style.display='none';
 }
 
 function toggleDD(e) { e.stopPropagation(); $('#userDD').classList.toggle('open'); }
